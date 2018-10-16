@@ -42,8 +42,7 @@ data class DeNovoAdapter<T, U : RecyclerView.ViewHolder>(val onBindViewHolder: (
     fun getClicks(): Observable<Pair<Int, T>> = clicksRelay.hide()
     fun getLongClicks(): Observable<Pair<Int, T>> = longClicksRelay.hide()
     fun swap(newValues: List<T>) {
-        val diffResult = DiffUtil.calculateDiff(createElementsDiffCallback(newValues))
-        diffResult.dispatchUpdatesTo(this)
+        DiffUtil.calculateDiff(createElementsDiffCallback(newValues)).dispatchUpdatesTo(this)
         values.clear()
         values.addAll(newValues)
     }
