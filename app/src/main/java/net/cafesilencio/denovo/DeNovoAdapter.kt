@@ -52,7 +52,7 @@ data class DeNovoAdapter<T, U : RecyclerView.ViewHolder>(val onBindViewHolder: (
         return object: DiffUtil.Callback() {
             override fun getOldListSize(): Int = values.size
             override fun getNewListSize(): Int = newValues.size
-            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = sameIdFun?.invoke(values[oldItemPosition], newValues[newItemPosition]) ?: true
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = sameIdFun?.invoke(values[oldItemPosition], newValues[newItemPosition]) ?: false
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = sameContentFun?.invoke(values[oldItemPosition], newValues[newItemPosition]) ?: false
         }
     }
