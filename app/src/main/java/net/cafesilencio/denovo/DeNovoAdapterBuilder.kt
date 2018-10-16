@@ -14,9 +14,9 @@ fun <T, U : RecyclerView.ViewHolder> deNovoAdapter(onBindViewHolder: (holder: U,
 @DeNovoAdapterDsl
 class DeNovoAdapterBuilder<T, U : RecyclerView.ViewHolder> constructor(private val onBindViewHolder: (holder: U, position: Int, element: T) -> Unit,
                                                                        private val viewHolderFactory: (parent: ViewGroup, viewType: Int) -> U) {
-    var sameIdFunc: DeNovoSameIdFunc<T>? = null
-    var sameContentFunc: DeNovoHaveSameContentFunc<T>? = null
-    var getItemTypeFunc: DeNovoGetItemViewTypeFunc? = null
+    var sameIdFun: DeNovoSameIdFun<T>? = null
+    var sameContentFun: DeNovoHaveSameContentFun<T>? = null
+    var getItemTypeFun: DeNovoGetItemViewTypeFun? = null
 
-    fun build(): DeNovoAdapter<T, U > = DeNovoAdapter(onBindViewHolder, viewHolderFactory, sameIdFunc, sameContentFunc, getItemTypeFunc)
+    fun build(): DeNovoAdapter<T, U > = DeNovoAdapter(onBindViewHolder, viewHolderFactory, sameIdFun, sameContentFun, getItemTypeFun)
 }

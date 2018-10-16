@@ -51,14 +51,14 @@ class DeNovoAdapterTest {
     fun hasSameIdFun() {
         val myAdapter = deNovoAdapter( { holder: MyViewHolder, position: Int, element: String -> },
                 {_: ViewGroup, _: Int -> MyViewHolder(View(RuntimeEnvironment.application))} ) {
-            sameIdFunc = { item1, item2 ->
+            sameIdFun = { item1, item2 ->
                item1 == item2
             }
         }.also {
             it.swap(listOf("foo", "bar"))
         }
 
-        val result = myAdapter.sameIdFunc?.invoke("foobar", "foobar") ?: false
+        val result = myAdapter.sameIdFun?.invoke("foobar", "foobar") ?: false
         assertTrue(result)
     }
 
@@ -66,14 +66,14 @@ class DeNovoAdapterTest {
     fun hasSameContentFun() {
         val myAdapter = deNovoAdapter( { holder: MyViewHolder, position: Int, element: String -> },
                 {_: ViewGroup, _: Int -> MyViewHolder(View(RuntimeEnvironment.application))} ) {
-            sameContentFunc = { item1, item2 ->
+            sameContentFun = { item1, item2 ->
                 item1 == item2
             }
         }.also {
             it.swap(listOf("foo", "bar"))
         }
 
-        val result = myAdapter.sameContentFunc?.invoke("foobar", "foobar") ?: false
+        val result = myAdapter.sameContentFun?.invoke("foobar", "foobar") ?: false
         assertTrue(result)
     }
 
@@ -81,14 +81,14 @@ class DeNovoAdapterTest {
     fun getItemTypeFunc() {
         val myAdapter = deNovoAdapter( { holder: MyViewHolder, position: Int, element: String -> },
                 {_: ViewGroup, _: Int -> MyViewHolder(View(RuntimeEnvironment.application))} ) {
-            getItemTypeFunc = {
+            getItemTypeFun = {
                 it
             }
         }.also {
             it.swap(listOf("foo", "bar"))
         }
 
-        val result = myAdapter.getItemTypeFunc?.invoke(2046)
+        val result = myAdapter.itemTypeFun?.invoke(2046)
 
         assertThat(result, `is`(2046))
     }
