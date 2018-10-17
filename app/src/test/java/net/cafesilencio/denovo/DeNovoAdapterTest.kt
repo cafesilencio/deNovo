@@ -81,7 +81,7 @@ class DeNovoAdapterTest {
     fun getItemTypeFunc() {
         val myAdapter = deNovoAdapter( { holder: MyViewHolder, position: Int, element: String -> },
                 {_: ViewGroup, _: Int -> MyViewHolder(View(RuntimeEnvironment.application))} ) {
-            getItemTypeFun = {
+            itemTypeFun = {
                 it
             }
         }.also {
