@@ -17,6 +17,9 @@ class DeNovoAdapterBuilder<T, U : RecyclerView.ViewHolder> constructor(private v
     var sameIdFun: DeNovoSameIdFun<T>? = null
     var sameContentFun: DeNovoHaveSameContentFun<T>? = null
     var itemTypeFun: DeNovoGetItemViewTypeFun? = null
+    var singleClickDelegate: DeNovoSingleClickFun<T>? = null
+    var longPressDelegate: DeNovoLongPressFun<T>? = null
+    var auxViewClickDelegates: Map<Int, DeNovoViewClickFun<T>> = mapOf()
 
-    fun build(): DeNovoAdapter<T, U > = DeNovoAdapter(onBindViewHolder, viewHolderFactory, sameIdFun, sameContentFun, itemTypeFun)
+    fun build(): DeNovoAdapter<T, U > = DeNovoAdapter(onBindViewHolder, viewHolderFactory, singleClickDelegate, longPressDelegate, sameIdFun, sameContentFun, itemTypeFun, auxViewClickDelegates)
 }
