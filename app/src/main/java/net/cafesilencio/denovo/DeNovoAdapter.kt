@@ -8,22 +8,19 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 
-typealias DeNovoSameIdFun<T> = (T, T) -> Boolean
-typealias DeNovoHaveSameContentFun<T> = (T, T) -> Boolean
+typealias DeNovoSameItemFun<T> = (T, T) -> Boolean
 typealias DeNovoGetItemViewTypeFun = (Int) -> Int
-typealias DeNovoSingleClickFun<T> = (Pair<Int, T>) -> Unit
-typealias DeNovoLongPressFun<T> = (Pair<Int, T>) -> Unit
-typealias DeNovoViewClickFun<T> = (Pair<Int, T>) -> Unit
+typealias DeNovoItemSelectedFun<T> = (Pair<Int, T>) -> Unit
 
 
 data class DeNovoAdapter<T, U : RecyclerView.ViewHolder>(val onBindViewHolder: (holder: U, position: Int, element: T) -> Unit,
                                                          val viewHolderFactory: (parent: ViewGroup, viewType: Int) -> U,
-                                                         val singleClickDelegate: DeNovoSingleClickFun<T>?,
-                                                         val longPressDelegate: DeNovoLongPressFun<T>?,
-                                                         val sameIdFun: DeNovoSameIdFun<T>?,
-                                                         val sameContentFun: DeNovoHaveSameContentFun<T>?,
+                                                         val itemSelectedDelegate: DeNovoItemSelectedFun<T>?,
+                                                         val longPressDelegate: DeNovoItemSelectedFun<T>?,
+                                                         val sameIdFun: DeNovoSameItemFun<T>?,
+                                                         val sameContentFun: DeNovoSameItemFun<T>?,
                                                          val itemTypeFun: DeNovoGetItemViewTypeFun?,
-                                                         val auxViewClickMap: Map<Int, DeNovoViewClickFun<T>>): RecyclerView.Adapter<U>() {
+                                                         val auxViewClickMap: Map<Int, DeNovoItemSelectedFun<T>>): RecyclerView.Adapter<U>() {
 
     private val values: MutableList<T> = mutableListOf()
 
@@ -32,7 +29,7 @@ data class DeNovoAdapter<T, U : RecyclerView.ViewHolder>(val onBindViewHolder: (
 
     override fun onBindViewHolder(holder: U, position: Int) {
         val element: T = values[position]
-        singleClickDelegate?.let { holder.itemView.setOnClickListener { singleClickDelegate.invoke(Pair(position, element)) } }
+        itemSelectedDelegate?.let { holder.itemView.setOnClickListener { itemSelectedDelegate.invoke(Pair(position, element)) } }
         longPressDelegate?.let { holder.itemView.setOnLongClickListener {
             longPressDelegate.invoke(Pair(position, element))
             true

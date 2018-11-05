@@ -98,7 +98,7 @@ class DeNovoAdapterTest {
     @Test
     fun clicksTest() {
         var clickItem: Pair<Int, String>? = null
-        val clickDelegate: DeNovoSingleClickFun<String> = {
+        val clickDelegate: DeNovoItemSelectedFun<String> = {
             clickItem = it
         }
         val vh = MyViewHolder(View(RuntimeEnvironment.application))
@@ -106,7 +106,7 @@ class DeNovoAdapterTest {
         val myAdapter = deNovoAdapter(
                 { _: MyViewHolder, _: Int, _: String -> },
                 { _: ViewGroup, _: Int -> vh }) {
-            singleClickDelegate = clickDelegate
+            itemSelectedDelegate = clickDelegate
         }.also {
             it.swap(listOf("foo", "bar"))
         }
@@ -120,7 +120,7 @@ class DeNovoAdapterTest {
     @Test
     fun longPressTest() {
         var clickItem: Pair<Int, String>? = null
-        val longPressFun: DeNovoLongPressFun<String> = {
+        val longPressFun: DeNovoItemSelectedFun<String> = {
             clickItem = it
         }
         val vh = MyViewHolder(View(RuntimeEnvironment.application))
@@ -143,7 +143,7 @@ class DeNovoAdapterTest {
     fun auxViewClickTest() {
         val buttonViewId = 8675309
         var clickItem: Pair<Int, String>? = null
-        val auxViewClickFun: DeNovoViewClickFun<String> = { clickItem = it }
+        val auxViewClickFun: DeNovoItemSelectedFun<String> = { clickItem = it }
 
         val button = Button(RuntimeEnvironment.application)
         button.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
@@ -174,7 +174,7 @@ class DeNovoAdapterTest {
     fun auxViewClickTest_whenResourceIdNotPresent() {
         val buttonViewId = 8675309
         var clickItem: Pair<Int, String>? = null
-        val auxViewClickFun: DeNovoViewClickFun<String> = { clickItem = it }
+        val auxViewClickFun: DeNovoItemSelectedFun<String> = { clickItem = it }
 
         val button = Button(RuntimeEnvironment.application)
         button.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
