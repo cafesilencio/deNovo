@@ -70,9 +70,15 @@ An example:
 val someLayoutViewIdClickFun: DeNovoViewClickFun<MyDataType> = { //do something with the data when this view element is clicked }
 
 val myAdapter = deNovoAdapter(myOnBindViewHolderFun, viewHolderFactory) {
+
     itemTypeFun = myItemViewTypeFun                                             //optional but if you don't define this be sure your viewHolderFactory expression inflates the right layout
+    
     sameIdFun = mySameIdFun                                                     //optional
+    
     singleClickDelegate = { //do something with the data }                      //optional
+    
     longPressDelegate = { //do something with the data }                        //optional
+    
     auxViewClickMap = mapOf(Pair(R.id.someViewId, someLayoutViewIdClickFun))    //optional
+    
 }
