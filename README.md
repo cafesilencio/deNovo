@@ -16,7 +16,7 @@ class MyViewHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView
 
 
 
-Define the onBindViewHolder function as expression: 
+Define the onBindViewHolder function as an expression: 
 
 val myOnBindViewHolderFun: (holder: MyViewHolder, position: Int, element: MyDataType) -> Unit = { holder, position, element ->
     holder.itemType.viewComponent1.text = element.someString
