@@ -5,7 +5,7 @@ WIP
 This project was a thought experiment in reducing the boilerplate around creating Recycle View adapters in Android. I found myself subclassing the same Recycle View adapter class over and over again.
 I wondered if I could create a DSL that would reduce the boiler plate and abstract the Recycle View adapter to a declaration. 
 
-The DSL requires passing in the implementation for the onBindViewHolder() and onCreateViewHolder() methods as well as optional passing of functions for getItemViewType() and swapping the adapter contents.
+The DSL requires passing in the implementation for the onBindViewHolder() and onCreateViewHolder() methods as well as optional passing of functions for getItemViewType() and identity functions for swapping the adapter contents.
 In addition item clicks and long presses are supported as well as clicks on specified view Ids.  
 
 Usage:
