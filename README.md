@@ -45,6 +45,7 @@ val mySameContentsFun: DeNovoSameItemFun<MyDataType> = { item1, item2 -> item1.i
 The click and long press definition is: 
 ````kotlin 
 DeNovoItemSelectedFun<T> = (Pair<Int, T>) -> Unit 
+
 val clickFun: DeNovoItemSelectedFun<T> = { data ->
     val position: Int = data.first //this is the position of the element in the list
     val element: MyDataType = data.second //this is the data at the position that was clicked/long pressed
