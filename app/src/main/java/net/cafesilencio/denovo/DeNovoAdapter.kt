@@ -59,4 +59,6 @@ data class DeNovoAdapter<T, U : RecyclerView.ViewHolder>(val onBindViewHolder: (
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = sameContentFun?.invoke(values[oldItemPosition], newValues[newItemPosition]) ?: false
         }
     }
+
+    fun getItemAtPosition(position: Int): T? = values.firstOrNull { it == values[position] }
 }
